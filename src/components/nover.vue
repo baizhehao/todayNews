@@ -46,7 +46,7 @@
     <div class="recommend_novella">
         <h3 class="recommend_novella_tit">推荐小说</h3>
         <div class="novella_box" v-for="itme in nover" :key=itme.id>
-            <img src="../assets/img/xiaoshuoPic1.png" alt="">
+            <img :src="itme.book_cover" alt="">
             <div class="novella_synopsis">
                 <h4>{{itme.bookname}}</h4>
                 <p>{{itme.introduction.substring(0,33)+"..."}}</p>
@@ -113,7 +113,6 @@ export default {
             })
             .then((res)=>{
                 this.nover = JSON.parse(res);
-                console.log(res)
         })
     }
 }

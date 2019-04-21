@@ -45,7 +45,7 @@
                 <p class="time">刚刚</p>
             </div>
         </a>
-        <a class="common news-content news-content-picture" href="#" v-for="item in news" :key="item.id">
+        <a class="common news-content news-content-picture" v-for="item in news" :key="item.id" :href="item.link">
             <div class="pictrue-layout">
                 <h3 class="news-content-tit">{{item.title}}</h3>
                 <div class="commonStyle">
@@ -55,7 +55,7 @@
                     <span class="close" @touchstart="showHid"></span>
                 </div>
             </div>
-            <img class="news-picture-img" src="item.url" alt="">
+            <img class="news-picture-img" :src="item.picInfo[0].url" alt="">
         </a>
     </div>
 </template>
@@ -77,13 +77,13 @@ export default {
         })
         .then((res)=>{
             this.news = JSON.parse(res);
+            console.log(res)
             })
         },
     methods:{
         showHid:function(e){
             this.$emit("parentFunc");
             let mouseY = parseInt(e.targetTouches[0].clientY);
-            console.log(mouseY-87)
             if(mouseY-87<280){
                 $(".popup").css({"top":mouseY})
             }else{

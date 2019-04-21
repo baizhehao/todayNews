@@ -5,9 +5,10 @@ import Vuex from "vuex";
 import store from "./store/store";
 import App from './App';
 import router from './router';
+import ElementUI from 'element-ui'
 
 Vue.config.productionTip = false
-
+Vue.use(ElementUI)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
