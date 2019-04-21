@@ -1,8 +1,7 @@
 <template>
     <div class="content">
-        <!-- 点击×的内容 -->
-        <div class="zhezhao" @touchstart="hid"></div>
-        <div class="popup">
+         <!-- 点击×的内容 -->
+        <div class="popup" ref="hidden">
             <div class="popup_content">
                 <div class="popup_text">
                     <h3>不感兴趣</h3>
@@ -53,7 +52,7 @@
                     <p class="provenance">新华网客户端</p>
                     <p class="comment"><span class="commentNum">1035</span>评论</p>
                     <p class="time">刚刚</p>
-                    <span class="close" @touchstart.prevent="closeFunc($event)"></span>
+                    <span class="close" @touchstart="showHid"></span>
                 </div>
             </div>
             <img class="news-picture-img" src="item.url" alt="">
@@ -81,24 +80,19 @@ export default {
             })
         },
     methods:{
-        closeFunc:function(evt){
-            console.log(evt)
-            let clientX = evt.clientX;
-            let clientY = evt.clientY;
-            console.log(clientX,clientY)
-            $(".zhezhao").css({display:"block"});
-            $(".popup").css({display:"block"})
-            if(clientY-$('header').height()>$(".popup").height()){
-                $(".popup").css({"top":clientY-$(".popup").height()})
+        showHid:function(e){
+            this.$emit("parentFunc");
+            let mouseY = parseInt(e.targetTouches[0].clientY);
+            console.log(mouseY-87)
+            if(mouseY-87<280){
+                $(".popup").css({"top":mouseY})
             }else{
-                $(".popup").css({"top":clientY})
+                $(".popup").css({"top":`${mouseY-280}px`})
             }
-        },
-        hid:function(){
-            $(".zhezhao").css({display:"none"});
-            $(".popup").css({display:"none"})
+            $(".popup").css({display:"block"});
         }
     }
+    
 }
 </script>
 
@@ -111,7 +105,6 @@ export default {
 .content{
     -webkit-flex:1;
     overflow-y: auto;
-    position: relative;
 }
 .news-content{
     border-bottom: 1px solid #e7e7e7;
@@ -255,15 +248,6 @@ export default {
 }
 .shield p{
     margin-bottom: 0px;
-}
-.zhezhao{
-    width:3.75rem;
-    height: 6.67rem;
-    background:black;
-    opacity: 0.3;
-    position: absolute;
-    z-index: 3;
-    display: none;
 }
 </style>
 

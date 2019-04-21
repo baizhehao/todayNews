@@ -45,6 +45,16 @@
     <!-- recommend novella 推荐小说 -->
     <div class="recommend_novella">
         <h3 class="recommend_novella_tit">推荐小说</h3>
+        <div class="novella_box" v-for="itme in nover" :key=itme.id>
+            <img src="../assets/img/xiaoshuoPic1.png" alt="">
+            <div class="novella_synopsis">
+                <h4>{{itme.bookname}}</h4>
+                <p>{{itme.introduction.substring(0,33)+"..."}}</p>
+                <div class="information">
+                    <span class="author">{{itme.author_name}}</span><span class="novella_type">{{itme.class_name}}</span><span>2.3万人已读</span>
+                </div>
+            </div>
+        </div>
         <div class="novella_box">
             <img src="../assets/img/xiaoshuoPic1.png" alt="">
             <div class="novella_synopsis">
@@ -64,7 +74,6 @@
                     <span class="author">感叹号</span><span class="novella_type">悬疑灵异</span><span>2.3万人已读</span>
                 </div>
             </div>
-            
         </div>
     </div>
 </div>
@@ -77,7 +86,7 @@ export default {
     name:"index",
      data(){
         return{
-            
+            nover:[]
         }
     },
     mounted(){
@@ -96,7 +105,17 @@ export default {
                 nextButton: '.swiper-button-next',
                 prevButton: '.swiper-button-prev'
         })      
-    }
+    },
+    created:function() {
+        fetch('http://localhost:3000/nover')
+            .then((res)=>{
+            return res.text(); // res.text()是一个Promise对象
+            })
+            .then((res)=>{
+                this.nover = JSON.parse(res);
+                console.log(res)
+        })
+    }
 }
 </script>
 

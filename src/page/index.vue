@@ -1,13 +1,16 @@
 <template>
-    <div class="divBox">
+    <div class="divBox" >
+
         <top @click1="parentclick"></top>
         <div class="content">
             <keep-alive>
-               <component v-bind:is="contents"></component>
+               <component v-bind:is="contents" @parentFunc="childFunc"></component>
             </keep-alive>
         </div>
-       
         <bottom/>
+        <!-- 点击×的内容 -->
+        <div class="zhezhao" @touchstart="hid"></div>
+        
     </div>
     
 </template>
@@ -23,9 +26,14 @@ export default {
    name:"index",
    methods:{
        parentclick:function(index){
-           console.log(index)
-           console.log(this.$store.state.comTitName)
             this.contents=this.$store.state.comTitName[index]
+        },
+        hid:function(event){ 
+            $(".zhezhao").css({display:"none"});
+            $(".popup").css({display:"none"})
+        },
+        childFunc:function(){
+            $(".zhezhao").css({display:"block"});
         }
    },
    data:function(){
@@ -52,6 +60,16 @@ export default {
 .content{
     -webkit-flex:1;
     overflow-y: auto;
+}
+
+.zhezhao{
+    width:3.75rem;
+    height: 6.67rem;
+    background:black;
+    opacity: 0.3;
+    position: absolute;
+    z-index: 3;
+    display: none;
 }
 </style>
 
