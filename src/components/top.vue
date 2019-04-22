@@ -4,7 +4,7 @@
             <div class="common header_top">
                 <div class="header_top_left">
                     <i class="iconfont icon-sousu"></i>
-                    <input type="text" id="aaaa" @input="func">
+                    <input type="text">
                 </div>
                 <div class="header_top_right">
                     <i class="iconfont icon-zhaoxiangji"></i>
@@ -14,23 +14,29 @@
         </div>
         <div class="header_bottom">
             <nav class="common navClass">
+                <li @touchstart="titFunc(attention)">关注</li>
+                <li @touchstart="titFunc(recommend)">推荐</li>
                 <li v-for="(item,index) of curList" 
-                :key="item.id"
-                @touchstart="titFunc(index)"
-                >{{item}}</li>
-                <i class="iconfont icon-gengduo"></i>
+                        :key="item.id"
+                        @touchstart="titFunc(index)"
+                        >{{item.tagName}}</li>
+                <i class="iconfont icon-gengduo" @touchstart="tagShow"></i>
             </nav>
         </div>
     </header>
 </template>
 <script>
-import $ from "jquery"
+import $ from "jquery";
 
 export default {
     name:"index",
     data:function(){
         return {
-            curList:this.$store.state.curTitArr
+            curList:this.$store.state.curTitArr,
+            //关注
+            attention:"attention",
+            //推荐；
+            recommend:"recommend"
         }
     },
     methods:{
@@ -38,11 +44,10 @@ export default {
             this.$emit("click1",index);
             
         },
-        func:function(){
-            console.log($("#aaaa").val())
+        tagShow:function(){
+            this.$emit("clickTag")
         }
     }
-
 }
 </script>
 <style scoped>

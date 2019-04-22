@@ -28,19 +28,19 @@
             </div>
         </div>
         <a class="common news-content" href="#">
-            <h3 class="news-content-tit">缅怀先烈——习近平这样说</h3>
+            <h3 class="news-content-tit">关注页面</h3>
             <div class="commonStyle">
                 <span class="special">置顶</span>
-                <p class="provenance">新华社</p>
+                <p class="provenance">关注页面</p>
                 <p class="comment"><span class="commentNum">1489</span>评论</p>
                 <p class="time">刚刚</p>
             </div>
         </a>
         <a class="common news-content" href="#">
-            <h3 class="news-content-tit">让信仰之光照亮复兴之路</h3>
+            <h3 class="news-content-tit">关注页面</h3>
             <div class="commonStyle">
                 <span class="special">置顶</span>
-                <p class="provenance">新华网客户端</p>
+                <p class="provenance">关注页面</p>
                 <p class="comment"><span class="commentNum">1035</span>评论</p>
                 <p class="time">刚刚</p>
             </div>
@@ -49,7 +49,7 @@
             <div class="pictrue-layout">
                 <h3 class="news-content-tit">{{item.title}}</h3>
                 <div class="commonStyle">
-                    <p class="provenance">新华网客户端</p>
+                    <p class="provenance">关注页面</p>
                     <p class="comment"><span class="commentNum">1035</span>评论</p>
                     <p class="time">刚刚</p>
                     <span class="close" @touchstart="showHid"></span>

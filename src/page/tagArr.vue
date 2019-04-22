@@ -1,7 +1,7 @@
 <template>
     <div class="titPage">
         <div class="top">
-            <i class="el-icon-close closeC"></i>
+            <i class="el-icon-close closeC" @touchstart="tagHid"></i>
         </div>
         <div class="content">
             <div class="content_tit">
@@ -12,18 +12,30 @@
             <div class="titBox">
                 <span class="titName">关注</span>
                 <span class="titName">推荐</span>
-                <span class="titName" v-for="item in curTitArr" :key="item.id"><i class="el-icon-error" v-show="pshow"></i>{{item}}</span>
+                <span class="titName" 
+                      v-for="(item,index) in curTitArr" 
+                      :key="item.id"
+                >
+                    <i class="el-icon-error" 
+                            v-show="pshow"
+                            @touchstart="deleteTag(index)"
+                            ></i>
+                    {{item.tagName}}
+                </span>
             </div>
             <div class="content_tit tit2">
                 <h3>频道推荐</h3>
                 <p>点击添加频道</p>
             </div>
             <div class="titBox">
-                <span class="titName recommendTit" 
-                    v-for="(item,index) in recommendTit" 
-                    :key="item.id"
-                    @touchstart.self="pushFunc(index)"
-                ><i class="el-icon-plus"></i>{{item}}</span>
+                    <span class="titName recommendTit" 
+                        v-for="(item,index) in recommendTit" 
+                        :key="item.id"
+                        @touchstart="pushFunc(index)"
+                    >
+                        <i class="el-icon-plus"></i>
+                        {{item.tagName}}
+                    </span>
             </div>
         </div>
     </div>
@@ -53,21 +65,40 @@ export default {
            }
        },
        pushFunc:function(index){
-           console.log(index)
-           console.log(typeof this.$store.state.curTitArr.index)
-           console.log(this.$store.state.addTit)
-        //    this.$store.state.curTitArr.push(this.$store.state.addTit.splice[index]);
-        //    this.$store.state.addTit.splice(index,1);
+            this.$store.state.curTitArr.push(this.$store.state.addTit[index]);
+            this.$store.state.addTit.splice(index,1);
+       },
+       deleteTag:function(index){
+            this.$store.state.addTit.push(this.$store.state.curTitArr[index]);
+            this.$store.state.curTitArr.splice(index,1);
+       },
+       tagHid:function(){
+           this.$emit("clickTag")
        }
    }
 }
 </script>
 
 <style scoped>
+.list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter, .list-leave-to
+/* .list-leave-active for below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
 .titPage{
     display: flex;
     flex-direction: column;
     height: 100%;
+    position:absolute;
+    background:#ffffff;
+    z-index:3;
 }
 /* top */
 .top{

@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="novella_box">
-            <img src="../assets/img/xiaoshuoPic1.png" alt="">
+            <img src="/static/img/xiaoshuoPic1.png" alt="">
             <div class="novella_synopsis">
                 <h4>活人禁地</h4>
                 <p>古老的村子全都是女人,他们竟然遵守一个特殊的风俗,和所有愿意与她...</p>
@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="novella_box">
-            <img src="../assets/img/xiaoshuoPic1.png" alt="">
+            <img src="/static/img/xiaoshuoPic1.png" alt="">
             <div class="novella_synopsis">
                 <h4>活人禁地</h4>
                 <p>古老的村子全都是女人,他们竟然遵守一个特殊的风俗,和所有愿意与她...</p>
@@ -134,13 +134,13 @@ export default {
     background-size: 100% 1.53rem;
 }
 .pic1{
-    background:url(../assets/img/banner.png); 
+    background:url(/static/img/banner.png); 
 }
 .pic2{
-    background:url(../assets/img/banner2.png); 
+    background:url(/static/img/banner2.png); 
 }
 .pic3{
-    background:url(../assets/img/banner3.png); 
+    background:url(/static/img/banner3.png); 
 }
 /* 书签 */
 .header_tit{
