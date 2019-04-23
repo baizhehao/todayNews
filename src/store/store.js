@@ -60,6 +60,21 @@ export default new Vuex.Store({
                    {tagName:"NBA",componentName:""},
                    {tagName:"值点",componentName:""}
                  ]
+    },
+    mutations:{
+        //首页标签页的增加
+        addFunc(state,index){
+           state.curTitArr.push(state.addTit[index]);
+           state.addTit.splice(index,1);
+        },
+        //首页标签页的删除
+        deleFunc(state,index){
+            state.addTit.push(state.curTitArr[index]);
+            state.curTitArr.splice(index,1);
+        }
+    },
+    actions:{
+        
     }
         
 })

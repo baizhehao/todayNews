@@ -65,12 +65,12 @@ export default {
            }
        },
        pushFunc:function(index){
-            this.$store.state.curTitArr.push(this.$store.state.addTit[index]);
-            this.$store.state.addTit.splice(index,1);
+           //触发vuex的mutations;
+            this.$store.commit("addFunc",index);
        },
        deleteTag:function(index){
-            this.$store.state.addTit.push(this.$store.state.curTitArr[index]);
-            this.$store.state.curTitArr.splice(index,1);
+           //同上
+            this.$store.commit("deleFunc",index);
        },
        tagHid:function(){
            this.$emit("clickTag")
