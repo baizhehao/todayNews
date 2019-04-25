@@ -14,8 +14,8 @@
         </div>
         <div class="header_bottom">
             <nav class="common navClass">
-                <li @touchstart="titFunc(attention)">关注</li>
-                <li @touchstart="titFunc(recommend)">推荐</li>
+                <li @touchstart="titFunc(attention)" class="">关注</li>
+                <li @touchstart="titFunc(recommend)" id="titClickStyle">推荐</li>
                 <li v-for="(item,index) of curList" 
                         :key="item.id"
                         @touchstart="titFunc(index)"
@@ -55,6 +55,7 @@ export default {
     width:3.47rem;
     margin:0 auto;
 }
+
 /* header */
 header{
     width:100%;
@@ -134,5 +135,9 @@ header{
     background-color:white;
     width:60px;
     text-align: center;
+}
+#titClickStyle{
+    font-size: .18rem;
+    color:#f85959;
 }
 </style>

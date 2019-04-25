@@ -3,14 +3,17 @@
         <top @click1="parentclick" @clickTag="tagHid=!tagHid"></top>
         <div class="content">
             <keep-alive>
-               <component v-bind:is="contents" @parentFunc="childFunc"></component>
+               <component v-bind:is="contents" @parentFunc="childFunc" :newsdate="newsDates"></component>
             </keep-alive>
         </div>
         <bottom/>
         <!-- 点击×的内容 -->
         <div class="zhezhao" @touchstart="hid"></div>
+        <!-- 标签页 -->
         <transition name="custom-classes-transition"
-            enter-active-class="animated fadeInUpBig">
+            enter-active-class="animated fadeInUpBig"
+            leave-active-class="animated fadeOutDownBig"
+            >
             <tagArr v-show="tagHid"  @clickTag="tagHid=!tagHid"></tagArr>
         </transition>
     </div>
@@ -51,19 +54,36 @@ export default {
             $(".zhezhao").css({display:"none"});
             $(".popup").css({display:"none"})
         },
-        childFunc:function(){
-            $(".zhezhao").css({display:"block"});
+        childFunc:function(newsId){
+            if(newsId==undefined){
+                $(".zhezhao").css({display:"block"});
+            }else{
+                this.newsDates.splice(newsId,1);
+                this.hid()
+            }
+            
         }
    },
    data:function(){
        return{
            contents:"newscon",
-           tagHid:false
+           tagHid:false,
+           newsDates:[]
        }
    },
    components:{
        top,newscon,xianNews,businessNews,nover,bottom,tagArr
-   }
+   },
+   //钩子函数
+   created:function() {
+        fetch('http://localhost:3000/news')
+            .then((res)=>{
+            return res.text(); // res.text()是一个Promise对象
+        })
+        .then((res)=>{
+            this.newsDates = JSON.parse(res);
+        })
+    }
     
 }
 

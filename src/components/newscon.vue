@@ -2,7 +2,7 @@
     <div class="content">
          <!-- 点击×的内容 -->
         <div class="popup" ref="hidden">
-            <div class="popup_content">
+            <div class="popup_content" id="delete" @touchstart="deleNewsFunc">
                 <div class="popup_text">
                     <h3>不感兴趣</h3>
                     <p>减少这类内容</p>
@@ -45,17 +45,22 @@
                 <p class="time">刚刚</p>
             </div>
         </a>
-        <a class="common news-content news-content-picture" v-for="item in news" :key="item.id" :link="item.link">
+        <a class="common news-content news-content-picture" 
+                v-for="(item,index) in newsdate" 
+                :key="item.id" 
+                :link="item.link">
             <div class="pictrue-layout">
                 <h3 class="news-content-tit">{{item.title}}</h3>
                 <div class="commonStyle">
                     <p class="provenance">新华网客户端</p>
                     <p class="comment"><span class="commentNum">1035</span>评论</p>
                     <p class="time">刚刚</p>
-                    <span class="close" @touchstart="showHid"></span>
+                    <span class="close" @touchstart="showHid($event,index)"></span>
                 </div>
             </div>
-            <img class="news-picture-img" v-if="item.picInfo[0]" :src="item.picInfo[0].url" alt=""/>
+            <img class="news-picture-img" v-if="item.picInfo[0]" 
+                                          :src="item.picInfo[0].url" 
+                                          alt=""/>
         </a>
     </div>
 </template>
@@ -67,20 +72,13 @@ export default {
     name:"index",
     data:function(){
         return {
-            news:{}
+          isDelete:null
         }
     },
-    created:function() {
-        fetch('http://localhost:3000/news')
-            .then((res)=>{
-            return res.text(); // res.text()是一个Promise对象
-        })
-        .then((res)=>{
-            this.news = JSON.parse(res);
-            })
-        },
+    props:['newsdate'],
     methods:{
-        showHid:function(e){
+        //点击×的效果
+        showHid:function(e,id){
             this.$emit("parentFunc");
             let mouseY = parseInt(e.targetTouches[0].clientY);
             if(mouseY-87<280){
@@ -89,6 +87,15 @@ export default {
                 $(".popup").css({"top":`${mouseY-280}px`})
             }
             $(".popup").css({display:"block"});
+            this.currNewsId=id
+        },
+        deleNewsFunc:function(e){
+           let content = e.target.innerHTML
+            console.log(content)
+            if(content=="减少这类内容"||content=="不感兴趣"){
+                console.log()
+                this.$emit("parentFunc",this.currNewsId)
+            }
         }
     }
     
