@@ -2,7 +2,7 @@
     <div class="bagBox">
         <header>
             <div class="header-top">
-                <img src="/static/img/userpic.png" alt="" class="username-pic">
+                <img src="static/img/userpic.png" alt="" class="username-pic">
                 <div class="username">
                     <h3>查无此人</h3>
                     <div class="apply-attestation">申请认证</div>

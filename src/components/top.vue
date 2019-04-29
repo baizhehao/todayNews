@@ -14,11 +14,12 @@
         </div>
         <div class="header_bottom">
             <nav class="common navClass">
-                <li @touchstart="titFunc(attention)" class="">关注</li>
-                <li @touchstart="titFunc(recommend)" id="titClickStyle">推荐</li>
+                <li @touchstart="titFunc($event,attention)" :class={comTit:true,titClickStyle:false}>关注</li>
+                <li @touchstart="titFunc($event,recommend)" :class={comTit:true,titClickStyle:true}>推荐</li>
                 <li v-for="(item,index) of curList" 
+                        :class={comTit:true,titClickStyle:false}
                         :key="item.id"
-                        @touchstart="titFunc(index)"
+                        @touchstart="titFunc($event,index)"
                         >{{item.tagName}}</li>
                 <i class="iconfont icon-gengduo" @touchstart="tagShow"></i>
             </nav>
@@ -40,8 +41,10 @@ export default {
         }
     },
     methods:{
-        titFunc:function(index){
+        titFunc:function(event,index){
             this.$emit("click1",index);
+            $(".comTit").removeClass('titClickStyle');
+            $(event.target).addClass('titClickStyle');
             
         },
         tagShow:function(){
@@ -117,7 +120,7 @@ header{
     color:#e75d5d;
     font-weight: 600;
 }
-.navClass li{
+.comTit{
     list-style: none;
     font-size:.16rem;
     color:#202020;
@@ -136,8 +139,8 @@ header{
     width:60px;
     text-align: center;
 }
-#titClickStyle{
-    font-size: .18rem;
+.titClickStyle{
+    font-size: .16rem;
     color:#f85959;
 }
 </style>

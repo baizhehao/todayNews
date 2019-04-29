@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
-        //推荐的标签头
+        //推荐的标签头this.$store.state.addTit = 
         addTit:[
                 {tagName:"党媒推荐",componentName:""},
                 {tagName:"钓鱼",componentName:""},
@@ -62,7 +62,7 @@ export default new Vuex.Store({
                  ]
     },
     mutations:{
-        //首页标签页的增加
+        //首页标签页的增加this.$store.commint("addFund",name)
         addFunc(state,index){
            state.curTitArr.push(state.addTit[index]);
            state.addTit.splice(index,1);

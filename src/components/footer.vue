@@ -14,7 +14,7 @@
             <i class="iconfont iconCommon icon-shipin-bofang"></i>
             <span class="header-text footer-text">小视频</span>
         </div>
-        <router-link to="/my">
+        <router-link to='/my'>
             <div class="footer-ico">
                 <i class="iconfont iconCommon icon-wode"></i>
                 <span class="header-text footer-text" id="usme">我的</span>
@@ -26,8 +26,12 @@
 <script>
 
 export default {
-    name:"index"
-
+    name:"index",
+    data:function(){
+        return {
+        
+        }
+    }
 }
 </script>
  

@@ -40,6 +40,7 @@ export default {
        parentclick:function(index){
            if(index=="recommend"){
                this.contents="newscon";
+               
                return
            }else if(index=="attention"){
                this.contents=attention;
