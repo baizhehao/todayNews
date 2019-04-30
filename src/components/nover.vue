@@ -81,7 +81,7 @@
 
 <script>
 import Swiper from "swiper";
-import "../assets/css/swiper.min.css";
+import "../../static/css/swiper.min.css";
 export default {
     name:"index",
      data(){

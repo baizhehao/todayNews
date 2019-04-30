@@ -1,5 +1,5 @@
 <template>
-    <div class="content">
+    <div class="content1" id="wrapper">
          <!-- 点击×的内容 -->
         <div class="popup" ref="hidden">
             <div class="popup_content" id="delete" @touchstart="deleNewsFunc">
@@ -27,12 +27,67 @@
                 </div>
             </div>
         </div>
+
         <a class="common news-content" href="#">
             <h3 class="news-content-tit">缅怀先烈——习近平这样说</h3>
             <div class="commonStyle">
                 <span class="special">置顶</span>
                 <p class="provenance">新华社</p>
                 <p class="comment"><span class="commentNum">1489</span>评论</p>
+                <p class="time">刚刚</p>
+            </div>
+        </a>
+        <a class="common news-content" href="#">
+            <h3 class="news-content-tit">让信仰之光照亮复兴之路</h3>
+            <div class="commonStyle">
+                <span class="special">置顶</span>
+                <p class="provenance">新华网客户端</p>
+                <p class="comment"><span class="commentNum">1035</span>评论</p>
+                <p class="time">刚刚</p>
+            </div>
+        </a>
+        <a class="common news-content" href="#">
+            <h3 class="news-content-tit">让信仰之光照亮复兴之路</h3>
+            <div class="commonStyle">
+                <span class="special">置顶</span>
+                <p class="provenance">新华网客户端</p>
+                <p class="comment"><span class="commentNum">1035</span>评论</p>
+                <p class="time">刚刚</p>
+            </div>
+        </a>
+        <a class="common news-content" href="#">
+            <h3 class="news-content-tit">让信仰之光照亮复兴之路</h3>
+            <div class="commonStyle">
+                <span class="special">置顶</span>
+                <p class="provenance">新华网客户端</p>
+                <p class="comment"><span class="commentNum">1035</span>评论</p>
+                <p class="time">刚刚</p>
+            </div>
+        </a>
+        <a class="common news-content" href="#">
+            <h3 class="news-content-tit">让信仰之光照亮复兴之路</h3>
+            <div class="commonStyle">
+                <span class="special">置顶</span>
+                <p class="provenance">新华网客户端</p>
+                <p class="comment"><span class="commentNum">1035</span>评论</p>
+                <p class="time">刚刚</p>
+            </div>
+        </a>
+        <a class="common news-content" href="#">
+            <h3 class="news-content-tit">让信仰之光照亮复兴之路</h3>
+            <div class="commonStyle">
+                <span class="special">置顶</span>
+                <p class="provenance">新华网客户端</p>
+                <p class="comment"><span class="commentNum">1035</span>评论</p>
+                <p class="time">刚刚</p>
+            </div>
+        </a>
+        <a class="common news-content" href="#">
+            <h3 class="news-content-tit">让信仰之光照亮复兴之路</h3>
+            <div class="commonStyle">
+                <span class="special">置顶</span>
+                <p class="provenance">新华网客户端</p>
+                <p class="comment"><span class="commentNum">1035</span>评论</p>
                 <p class="time">刚刚</p>
             </div>
         </a>
@@ -66,7 +121,11 @@
 </template>
 
 <script>
+
+import IScroll from 'iscroll';
+
 import $ from "jquery";
+import { setTimeout } from 'timers';
 
 export default {
     name:"index",
@@ -97,21 +156,21 @@ export default {
                 this.$emit("parentFunc",this.currNewsId)
             }
         }
+    
+        
     }
+    
     
 }
 </script>
 
 <style scoped>
+
 .common{
     width:3.47rem;
     margin:0 auto;
 }
 /* content */
-.content{
-    -webkit-flex:1;
-    overflow-y: auto;
-}
 .news-content{
     border-bottom: 1px solid #e7e7e7;
     display:block;

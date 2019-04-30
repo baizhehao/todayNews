@@ -1,7 +1,7 @@
 <template>
     <div class="divBox" >
         <top @click1="parentclick" @clickTag="tagHid=!tagHid"></top>
-        <div class="content">
+        <div class="content" id="wrapper">
             <keep-alive>
                <component v-bind:is="contents" @parentFunc="childFunc" :newsdate="newsDates"></component>
             </keep-alive>
@@ -20,6 +20,8 @@
     
 </template>
 <script>
+import IScroll from 'iscroll';
+// import iScroll from '../../static/js/iscroll-probe.js'
 
 import top from "../components/top";
 //中间的动态组件
@@ -69,7 +71,8 @@ export default {
        return{
            contents:"newscon",
            tagHid:false,
-           newsDates:[]
+           newsDates:[],
+           iSrcollDom:null
        }
    },
    components:{
@@ -84,6 +87,32 @@ export default {
         .then((res)=>{
             this.newsDates = JSON.parse(res);
         })
+    },
+    //下拉刷新；
+    mounted:function(){
+        // console.log(document.getElementsByClassName("news-content"))
+        let myIScroll=null;
+        myIScroll = new IScroll("#wrapper",{
+            probeType:2
+        });
+        // console.log(this.iSrcollDom)
+        // myIScroll.on("scrollStart",function(){
+        //     console.log(myIScroll.y)
+        //     console.log(this.iSrcollDom.y)
+        // })
+        
+        myIScroll.on("beforeScrollStart",function () {
+                console.log("用户摸到了滚动区域，但是还没有滚");
+        });
+        myIScroll.on("scrollStart",function () {
+            console.log("开始滚了");
+        });
+        myIScroll.on("scrollEnd",function () {
+            console.log("滚完了");
+        });
+        myIScroll.on("scroll",function () {
+            console.log("在滚动的路上……");
+        });
     }
     
 }
@@ -99,8 +128,8 @@ export default {
 		height:100%;
 }
 .content{
-    -webkit-flex:1;
-    overflow-y: auto;
+    flex:1;
+    overflow-y:auto;
 }
 
 .zhezhao{

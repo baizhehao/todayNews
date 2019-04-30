@@ -3,7 +3,6 @@
 </template>
 
 <script>
-import "./assets/icon/iconfont.css";
 export default {
 	name: 'App'
 }
